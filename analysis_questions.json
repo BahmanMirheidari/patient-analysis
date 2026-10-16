@@ -1,0 +1,43 @@
+[
+  {
+    "id": "overall_summary",
+    "question": "Summarise the patient's reported concerns.",
+    "instruction": "Summarise the concerns described by the patient.",
+    "answer_type": "text",
+    "source_questions": "all"
+  },
+  {
+    "id": "memory_covered",
+    "question": "Was memory difficulty explicitly asked about?",
+    "instruction": "Determine whether an original interview question explicitly addressed memory difficulties.",
+    "answer_type": "yes_no_dont_know",
+    "source_questions": {
+      "match_any": ["memory", "remember", "recall"]
+    }
+  },
+  {
+    "id": "memory_response",
+    "question": "What did the patient say about memory?",
+    "instruction": "Summarise the patient's answer to the selected memory question.",
+    "answer_type": "text",
+    "source_questions": {
+      "match_any": ["memory", "remember", "recall"]
+    }
+  },
+  {
+    "id": "confidence_response",
+    "question": "What confidence did the patient report?",
+    "instruction": "Extract the patient's own stated confidence, preserving the original scale. If no confidence is explicitly reported, return Don't know.",
+    "answer_type": "text",
+    "source_questions": ["Q2"]
+  },
+  {
+    "id": "word_finding",
+    "question": "Did the patient report word-finding difficulties?",
+    "instruction": "Classify the patient's response using explicit evidence. Missing information must not be treated as No.",
+    "answer_type": "yes_no_dont_know",
+    "source_questions": {
+      "match": "find words"
+    }
+  }
+] 

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "cognitive_decline",
+    "task_type": "binary",
+    "classes": [
+      "cognitive_decline_indicated",
+      "no_cognitive_decline_indicated"
+    ],
+    "allow_abstain": true,
+    "instruction": "Assess whether the patient's Stage 1 findings suggest cognitive decline. Consider reported memory, language, attention, orientation and functional difficulties only when supported by the findings. Missing information is not evidence that decline is absent. Distinguish reported symptoms from objective cognitive impairment."
+  },
+  {
+    "id": "cognitive_status",
+    "task_type": "multiclass",
+    "classes": [
+      "dementia",
+      "MCI",
+      "HC"
+    ],
+    "allow_abstain": true,
+    "instruction": "Choose the cognitive-status class most consistent with the available findings. Dementia, mild cognitive impairment (MCI) and healthy control (HC) are distinct categories. Do not assume that reported memory difficulty alone establishes dementia or MCI. If the available findings do not adequately distinguish the classes, abstain."
+  }
+]

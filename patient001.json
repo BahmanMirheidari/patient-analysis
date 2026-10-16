@@ -1,0 +1,15 @@
+{
+  "patient_id": "patient001",
+  "QAs": {
+    "Q1": "Have you had difficulty remembering recent conversations?",
+    "A1": "Yes, sometimes I forget what my family told me.",
+    "Q2": "How confident are you in your memory?",
+    "A2": "I am fairly confident, perhaps 7 out of 10.",
+    "Q3": "Have you had difficulty finding words?",
+    "A3": "Sometimes I know what I want to say, but I cannot find the right word.",
+    "Q4": "Have you noticed changes in your ability to manage daily activities?",
+    "A4": "I occasionally forget appointments, but I can still manage my shopping and finances.",
+    "Q5": "Have you noticed any changes in your attention or concentration?",
+    "A5": "I sometimes lose track of what I am doing when there is a lot going on."
+  }
+}
