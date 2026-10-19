@@ -25,13 +25,6 @@
     }
   },
   {
-    "id": "confidence_response",
-    "question": "What confidence did the patient report?",
-    "instruction": "Extract the patient's own stated confidence, preserving the original scale. If no confidence is explicitly reported, return Don't know.",
-    "answer_type": "text",
-    "source_questions": ["Q2"]
-  },
-  {
     "id": "word_finding",
     "question": "Did the patient report word-finding difficulties?",
     "instruction": "Classify the patient's response using explicit evidence. Missing information must not be treated as No.",
@@ -39,5 +32,110 @@
     "source_questions": {
       "match": "find words"
     }
+  },
+    {
+    "id": "reasons_to_speak_response",
+    "question": "What confidence did the patient report?",
+    "instruction": "Extract the patient's own stated reasons to decide to talk with CognoSpeak",
+    "answer_type": "text",
+    "source_questions": ["Q1"]
+  },
+      {
+    "id": "memory_issues_response",
+    "question": "What problems the patient have had about their memory recently?",
+    "instruction": "Extract the patient's memory issues and list of them with details and examples.",
+    "answer_type": "text",
+    "source_questions": ["Q2"]
+  },
+  {
+    "id": "who_is_concerned_response",
+    "question": "What was mo worried or concerned about the memory issues?",
+    "instruction": "Extract the patient's details and examples of who is readlly concered about the memory issues, themselves, other orboth?",
+    "answer_type": "text",
+    "source_questions": ["Q3"]
+  },
+   {
+    "id": "who_is_concerned_response",
+    "question": "What was mo worried or concerned about the memory issues?",
+    "instruction": "Extract the patient's details and examples of who is readlly concered about the memory issues, themselves, other orboth?",
+    "answer_type": "text",
+    "source_questions": ["Q3"]
+  },
+  {
+    "id": "weekend_response",
+    "question": "What they did do over weekend with details?",
+    "instruction": "Extract the patient's details of events happend over the weekend with examples.",
+    "answer_type": "text",
+    "source_questions": ["Q4"]
+  },
+    {
+    "id": "news_response",
+    "question": "What has been in news_response?",
+    "instruction": "Extract the patient's details of recent news that they can remember.",
+    "answer_type": "text",
+    "source_questions": ["Q5"]
+  },
+  {
+    "id": "schools_response",
+    "question": "Which schools they went, when they left school?",
+    "instruction": "Extract the patient's mentioned schools and at which age they left school.",
+    "answer_type": "text",
+    "source_questions": ["Q6"]
+  },
+  {
+    "id": "after_school_response",
+    "question": "What happended after school?",
+    "instruction": "Extract the patient's responses to the events happend after leaving school.",
+    "answer_type": "text",
+    "source_questions": ["Q7"]
+  },
+  {
+    "id": "jobs_response",
+    "question": "Jobs they have had (last or current job).",
+    "instruction": "Extract the patient's details of the jobs they have been involved or done.",
+    "answer_type": "text",
+    "source_questions": ["Q8"]
+  },
+    {
+    "id": "jobs_response",
+    "question": "Who manages him/her finances?",
+    "instruction": "Extract the patient's response to who is responsible for managing finances, themselves, partners or family members.",
+    "answer_type": "text",
+    "source_questions": ["Q9"]
+  },
+  {
+    "id": "semantic_fluency_test_response",
+    "question": "Naming animal names in one minute.",
+    "instruction": "Count how many unique animal names they can name, take into account the repeats and mistaks.",
+    "answer_type": "text",
+    "source_questions": ["Q10"]
+  },
+   {
+    "id": "fluency_fluency_test_response",
+    "question": "Words starts with the letter 'P' in one minute.",
+    "instruction": "Count how many unique words thay can name starting with the letter 'P', they should not use names like human name, contry names, etc, take into account mistakes or repeats.",
+    "answer_type": "text",
+    "source_questions": ["Q11"]
+  },
+    {
+    "id": "cookie_theft_pictute_description_response",
+    "question": "Desciribing what are happening in the Cookie Theft Picture happening.",
+    "instruction": "They could describe multiple risky and disaterous events happening in the kitechn scene.",
+    "answer_type": "text",
+    "source_questions": ["Q12"]
+  },
+  {
+    "id": "complex_pictute_description_response",
+    "question": "Desciribing what are happening in the Complex Picture happening.",
+    "instruction": "They could describe multiple risky and disaterous events happening in the street scene.",
+    "answer_type": "text",
+    "source_questions": ["Q13"]
+  },
+   {
+    "id": "reading_paragraph_response",
+    "question": "Reading a paragraph aloud.",
+    "instruction": "They could read the 'grandfather' paragragh withoout mistakes, take into account any mistakes they might have.",
+    "answer_type": "text",
+    "source_questions": ["Q14"]
   }
 ] 
