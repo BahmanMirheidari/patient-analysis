@@ -7,8 +7,8 @@ from pathlib import Path
 from typing import Optional
 
 import numpy as np
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_ollama import ChatOllama
+from langchain_core.prompts import ChatPromptTemplate 
+from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 from sklearn.model_selection import StratifiedKFold
 
@@ -97,12 +97,13 @@ Do not skip any task. If a task cannot be answered, return answer "Don't know"
 and predicted_label "Don't know" with an empty evidence list.
 """
 
-def build_chain(model):
-    llm = ChatOllama(
+def build_chain(model, base_url="http://localhost:8000/v1"):
+    llm = ChatOpenAI(
         model=model,
+        api_key="EMPTY",
+        base_url=base_url,
         temperature=0,
-        num_predict=1400,
-        num_ctx=4096,
+        max_tokens=1400,
     )
     structured = llm.with_structured_output(LabeledBatch)
     prompt = ChatPromptTemplate.from_messages(
@@ -201,6 +202,9 @@ def main():
     p.add_argument("--seed", type=int, default=42)
     p.add_argument("--force", action="store_true")
     p.add_argument("--recheck-empty", action="store_true")
+    p.add_argument("--vllm-base-url", default="http://localhost:8000/v1",
+               help="Base URL of the vLLM OpenAI-compatible server "
+                    "(e.g. http://10.1.2.34:8000/v1)")
     args = p.parse_args()
 
     args.eval_ids  = _resolve_ids(args.eval_ids)
@@ -243,7 +247,7 @@ def main():
 
     embedder = CachedEmbedder("nomic-embed-text",
                               out_dir / "embeddings_cache.json")
-    chain = build_chain(args.model)
+    chain = build_chain(args.model, args.vllm_base_url)
     all_rows: list[dict] = []
 
     def _is_cached_usable(cached):
