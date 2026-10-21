@@ -6,7 +6,7 @@ from typing import Optional
 
 import numpy as np
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -86,14 +86,16 @@ Analysis tasks ({n_tasks} total):
 Return EXACTLY {n_tasks} results — one for every task above, in the same order.
 Do not skip any task. If a task cannot be answered from the Q&As,
 return answer "Don't know" with an empty evidence list.
-"""
+""" 
 
-def build_chain(model):
-    llm = ChatOllama(
-        model=model,
+def build_chain(model, base_url="http://localhost:8000/v1"):
+    # The model name here is whatever you passed to `vllm serve`
+    llm = ChatOpenAI(
+        model=model, # e.g., "meta-llama/Llama-3.2-3B-Instruct"
+        api_key="EMPTY", # vLLM doesn't require a real key
+        base_url=base_url,
         temperature=0,
-        num_predict=1400,
-        num_ctx=4096,
+        max_tokens=1400, # Corresponds to num_predict
     )
     structured = llm.with_structured_output(AnalysisBatch)
     prompt = ChatPromptTemplate.from_messages(
@@ -167,6 +169,9 @@ def main():
     p.add_argument("--limit", type=int, default=None)
     p.add_argument("--force", action="store_true")
     p.add_argument("--recheck-empty", action="store_true")
+    p.add_argument("--vllm-base-url", default="http://localhost:8000/v1",
+               help="Base URL of the vLLM OpenAI-compatible server "
+                    "(e.g. http://10.1.2.34:8000/v1)")
     args = p.parse_args()
 
     in_dir, out_dir = Path(args.input_dir), Path(args.output_dir)
@@ -182,7 +187,7 @@ def main():
     if not patients:
         raise SystemExit("No patients found")
 
-    chain = build_chain(args.model)
+    chain = build_chain(args.model, args.vllm_base_url)
     embedder = CachedEmbedder("nomic-embed-text",
                               out_dir / "embeddings_cache.json")
 
